@@ -1,5 +1,5 @@
 query rawPokemonData {
-  pokemon_v2_pokemon(limit: 10) {
+  pokemon_v2_pokemon(limit: 10, order_by: { id: asc }) {
     height
     base_experience
     name
@@ -28,5 +28,43 @@ query rawPokemonData {
       effort
     }
     weight
+    pokemon_v2_encounters(
+      distinct_on: location_area_id
+      order_by: { location_area_id: asc }
+    ) {
+      id
+      pokemon_v2_locationarea {
+        pokemon_v2_location {
+          name
+          pokemon_v2_region {
+            name
+          }
+        }
+      }
+    }
+    pokemon_v2_pokemonspecy {
+      base_happiness
+      capture_rate
+      evolution_chain_id
+      evolves_from_species_id
+      forms_switchable
+      gender_rate
+      generation_id
+      growth_rate_id
+      has_gender_differences
+      hatch_counter
+      is_baby
+      is_legendary
+      is_mythical
+      pokemon_v2_pokemonspeciesflavortexts(
+        order_by: { id: asc }
+        where: { language_id: { _eq: 9 } }
+      ) {
+        pokemon_v2_version {
+          name
+        }
+        flavor_text
+      }
+    }
   }
 }
