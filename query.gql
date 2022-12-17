@@ -19,6 +19,9 @@ query rawPokemonData {
           name
         }
       }
+      pokemon_v2_movelearnmethod {
+        name
+      }
     }
     pokemon_v2_pokemonstats {
       pokemon_v2_stat {
@@ -45,12 +48,9 @@ query rawPokemonData {
     pokemon_v2_pokemonspecy {
       base_happiness
       capture_rate
-      evolution_chain_id
       evolves_from_species_id
       forms_switchable
       gender_rate
-      generation_id
-      growth_rate_id
       has_gender_differences
       hatch_counter
       is_baby
@@ -64,6 +64,36 @@ query rawPokemonData {
           name
         }
         flavor_text
+      }
+      pokemon_v2_pokemonshape {
+        name
+      }
+      pokemon_v2_pokemonhabitat {
+        name
+      }
+      pokemon_v2_pokemonegggroups {
+        pokemon_v2_egggroup {
+          name
+        }
+      }
+      pokemon_v2_generation {
+        name
+      }
+      pokemon_v2_growthrate {
+        name
+      }
+      pokemon_v2_pokemoncolor {
+        name
+      }
+      pokemon_v2_pokemonevolutions {
+        pokemon_v2_evolutiontrigger {
+          name
+        }
+      }
+    }
+    pokemon_v2_pokemontypes(order_by: { id: asc }) {
+      pokemon_v2_type {
+        name
       }
     }
   }
