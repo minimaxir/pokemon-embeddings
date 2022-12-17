@@ -1,0 +1,14 @@
+query rawPokemonData {
+  pokemon_v2_pokemon(limit: 10) {
+    height
+    base_experience
+    name
+    id
+    pokemon_v2_encounters(distinct_on: location_area_id) {
+      id
+      pokemon_v2_locationarea {
+        name
+      }
+    }
+  }
+}
