@@ -4,11 +4,29 @@ query rawPokemonData {
     base_experience
     name
     id
-    pokemon_v2_encounters(distinct_on: location_area_id) {
-      id
-      pokemon_v2_locationarea {
+    pokemon_v2_pokemonabilities(
+      distinct_on: ability_id
+      order_by: { ability_id: asc }
+    ) {
+      pokemon_v2_ability {
         name
       }
     }
+    pokemon_v2_pokemonmoves(distinct_on: move_id, order_by: { move_id: asc }) {
+      pokemon_v2_move {
+        name
+        pokemon_v2_type {
+          name
+        }
+      }
+    }
+    pokemon_v2_pokemonstats {
+      pokemon_v2_stat {
+        name
+      }
+      base_stat
+      effort
+    }
+    weight
   }
 }
