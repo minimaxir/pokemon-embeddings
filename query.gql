@@ -1,25 +1,12 @@
 query rawPokemonData {
-  pokemon_v2_pokemon(limit: 10, order_by: { id: asc }) {
-    height
-    base_experience
-    name
+  pokemon_v2_pokemon(limit: 10, where: { id: { _eq: 25 } }) {
     id
-    pokemon_v2_pokemonabilities(
-      distinct_on: ability_id
-      order_by: { ability_id: asc }
-    ) {
-      pokemon_v2_ability {
-        name
-      }
-    }
-    pokemon_v2_pokemonmoves(distinct_on: move_id, order_by: { move_id: asc }) {
-      pokemon_v2_move {
-        name
-        pokemon_v2_type {
-          name
-        }
-      }
-      pokemon_v2_movelearnmethod {
+    name
+    height
+    weight
+    base_experience
+    pokemon_v2_pokemontypes(order_by: { id: asc }) {
+      pokemon_v2_type {
         name
       }
     }
@@ -28,14 +15,19 @@ query rawPokemonData {
         name
       }
       base_stat
-      effort
     }
-    weight
-    pokemon_v2_encounters(
-      distinct_on: location_area_id
-      order_by: { location_area_id: asc }
+    pokemon_v2_pokemonabilities(
+      distinct_on: ability_id
+      order_by: { ability_id: asc }
     ) {
-      id
+      pokemon_v2_ability {
+        name
+      }
+    }
+    pokemon_v2_encounters(
+      order_by: { pokemon_v2_locationarea: {}, location_area_id: asc }
+      distinct_on: location_area_id
+    ) {
       pokemon_v2_locationarea {
         pokemon_v2_location {
           name
@@ -48,7 +40,6 @@ query rawPokemonData {
     pokemon_v2_pokemonspecy {
       base_happiness
       capture_rate
-      evolves_from_species_id
       forms_switchable
       gender_rate
       has_gender_differences
@@ -91,8 +82,14 @@ query rawPokemonData {
         }
       }
     }
-    pokemon_v2_pokemontypes(order_by: { id: asc }) {
-      pokemon_v2_type {
+    pokemon_v2_pokemonmoves(distinct_on: move_id, order_by: { move_id: asc }) {
+      pokemon_v2_move {
+        name
+        pokemon_v2_type {
+          name
+        }
+      }
+      pokemon_v2_movelearnmethod {
         name
       }
     }
