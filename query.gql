@@ -1,5 +1,5 @@
 query rawPokemonData {
-  pokemon_v2_pokemon(limit: 10, where: { id: { _eq: 25 } }) {
+  pokemon_v2_pokemon(order_by: { id: asc }) {
     id
     name
     height
