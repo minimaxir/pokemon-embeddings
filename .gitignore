@@ -3,3 +3,4 @@ test.ipynb
 *.jsonl
 all_pokemon_data.json
 .DS_Store
+embeddings.*
