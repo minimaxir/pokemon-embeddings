@@ -4,3 +4,5 @@ test.ipynb
 all_pokemon_data.json
 .DS_Store
 embeddings.*
+/pokemon_images.nosync
+/pokemon_embeddings.nosync
