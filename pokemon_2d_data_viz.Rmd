@@ -1,0 +1,124 @@
+```{r}
+library(tidyverse)
+library(scales)
+library(RColorBrewer)
+library(arrow)
+
+caption <- "Max Woolf — minimaxir.com"
+
+sessionInfo()
+```
+
+```{r}
+theme_set(theme_minimal(base_size = 8, base_family = "Overpass") +
+  theme(
+    plot.title = element_text(size = 8, face = "bold"),
+    plot.subtitle = element_text(color = "#666666", size = 6),
+    axis.title.x = element_text(size = 6),
+    axis.title.y = element_text(size = 6),
+    plot.caption = element_text(size = 5, color = "#969696"),
+    plot.background = element_rect(fill = "#FFFFFF", color = "#FFFFFF"),
+    legend.title = element_text(size = 8),
+    # legend.key.width = unit(0.25, unit = "cm"),
+    # panel.grid.minor = element_blank()
+  ))
+```
+
+```{r}
+df_cosines <- read_parquet("pokemon_cossims.parquet") %>%
+  mutate(id_1 = factor(id_1), id_2 = factor(id_2))
+
+df_cosines %>% head()
+```
+
+```{r}
+normalize_range <- function(x) {
+  (x - min(x)) / (max(x) - min(x))
+}
+
+df_text_cossim <- df_cosines %>%
+  filter(cossim_type == "text") %>%
+  mutate(cossim_norm = normalize_range(cossim))
+df_image_cossim <- df_cosines %>%
+  filter(cossim_type == "image") %>%
+  mutate(cossim_norm = normalize_range(cossim))
+```
+
+
+```{r}
+gen_labels <- c(
+  "Gen I" = 1,
+  "Gen II" = 152,
+  "Gen III" = 252,
+  "Gen IV" = 387,
+  "Gen V" = 494,
+  "Gen VI" = 650,
+  "Gen VII" = 722,
+  "Gen VII" = 810,
+  "Gen VIII" = 906,
+  "Special" = 10001
+)
+
+print(names(gen_labels))
+print(gen_labels)
+```
+```{r}
+plot <- ggplot(df_text_cossim, aes(x = id_1, y = id_2, fill = cossim)) +
+  geom_raster(stat = "identity", interpolate = FALSE) +
+  scale_x_discrete(breaks = gen_labels, labels = names(gen_labels)) +
+  scale_y_discrete(breaks = gen_labels, labels = names(gen_labels)) +
+  scale_fill_viridis_c(option = "viridis", end = 1.0) +
+  labs(
+    title = "Pokémon Similarity by Text Embedding of JSON Metadata",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.", fill = "Cosine Similarity",
+    caption = caption
+  ) +
+  theme(
+    legend.position = "top",
+    legend.title = element_text(size = 6),
+    legend.text = element_text(size = 5, margin = margin(c(0.05, 0.0, 0.0, 0.0), unit = "cm")),
+    legend.key.width = unit(0.75, unit = "cm"),
+    legend.key.height = unit(0.25, unit = "cm"),
+    legend.margin = margin(c(0.0, 0.5, -0.2, 0.4), unit = "cm"),
+    axis.text.x = element_text(size = 5, angle = 90, vjust = 0.5),
+    axis.text.y = element_text(size = 5),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks = element_line(linewidth = 0.5, color = "#969696")
+    # axis.ticks.length.x = unit(., "cm"),
+    # axis.ticks.length.y = unit(.25, "cm"),
+  )
+
+ggsave("pokemon_cossim_text.png", plot, width = 4, height = 4)
+```
+
+```{r}
+plot <- ggplot(df_image_cossim, aes(x = id_1, y = id_2, fill = cossim)) +
+  geom_raster(stat = "identity", interpolate = FALSE) +
+  scale_x_discrete(breaks = gen_labels, labels = names(gen_labels)) +
+  scale_y_discrete(breaks = gen_labels, labels = names(gen_labels)) +
+  # scale_fill_viridis_c(option = "inferno", end = 0.8, limits = c(0.8, 1.0), na.value="#FFF") +
+  scale_fill_viridis_c(option = "inferno", end = 1.0) +
+  labs(
+    title = "Pokémon Similarity by Image Embedding of JSON Metadata",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.", fill = "Cosine Similarity",
+    caption = caption
+  ) +
+  theme(
+    legend.position = "top",
+    legend.title = element_text(size = 6),
+    legend.text = element_text(size = 5, margin = margin(c(0.05, 0.0, 0.0, 0.0), unit = "cm")),
+    legend.key.width = unit(0.75, unit = "cm"),
+    legend.key.height = unit(0.25, unit = "cm"),
+    legend.margin = margin(c(0.0, 0.5, -0.2, 0.4), unit = "cm"),
+    axis.text.x = element_text(size = 5, angle = 90, vjust = 0.5),
+    axis.text.y = element_text(size = 5),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks = element_line(linewidth = 0.5, color = "#969696")
+    # axis.ticks.length.x = unit(., "cm"),
+    # axis.ticks.length.y = unit(.25, "cm"),
+  )
+
+ggsave("pokemon_cossim_image.png", plot, width = 4, height = 4)
+```
