@@ -177,11 +177,9 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
   scale_y_continuous(breaks = pretty_breaks(4)) +
   coord_flip() +
   scale_fill_discrete(guide = NULL) +
-  # scale_fill_viridis_c(option = "viridis", end = 1.0) +
   labs(
     title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon",
     subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.",
-    # y = "Cosine Similarity",
     caption = caption
   ) +
   theme(
@@ -192,3 +190,43 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
 
 ggsave("pikachu_similar_generation.png", plot, width = 5, height = 3)
 ```
+
+```{r}
+df_subset <- df_image_cossim %>%
+  filter(id_1 == target_pokemon_id) %>%
+  group_by(gen_id_2) %>%
+  slice_max(order_by = cossim, n = 3) %>%
+  mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
+  left_join(df_pokemon, by=c("id_2" = "id")) %>%
+  mutate(name = factor(name, levels=rev(name)))
+
+df_subset
+```
+
+```{r}
+plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
+  geom_bar(stat="identity") +
+  geom_image(
+    aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y=0),
+    size = 0.30,
+    nudge_y = 0.05
+  ) +
+  geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = pretty_breaks(4)) +
+  coord_flip() +
+  scale_fill_discrete(guide = NULL) +
+  labs(
+    title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  ) +
+  facet_wrap(vars(gen_id_2), nrow=3, scales="free_y")
+
+ggsave("pikachu_image_generation.png", plot, width = 5, height = 3)
+```
+
