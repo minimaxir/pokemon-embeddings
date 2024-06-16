@@ -174,9 +174,9 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
   ) +
   geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
   scale_x_discrete() +
-  scale_y_continuous(breaks = c(0.5, 1.0)) +
+  scale_y_continuous(breaks = c(0.5, 1.0), limits=c(0.0, 1.0)) +
   coord_flip() +
-  scale_fill_discrete(guide = NULL) +
+  scale_fill_discrete(l=40, guide = NULL) +
   labs(
     title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon Embeddings",
     subtitle = "All Pokémon up to Scarlet/Violet DLC.",
@@ -213,9 +213,9 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
   ) +
   geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
   scale_x_discrete() +
-  scale_y_continuous(breaks = c(0.5, 1.0)) +
+  scale_y_continuous(breaks = c(0.5, 1.0), limits=c(0.0, 1.0)) +
   coord_flip() +
-  scale_fill_discrete(guide = NULL) +
+  scale_fill_discrete(l=40, guide = NULL) +
   labs(
     title = "Cosine Similarities of a Pikachu Image Embedding vs. all Pokémon",
     subtitle = "All Pokémon up to Scarlet/Violet DLC.",
@@ -235,7 +235,7 @@ Now that there is a working version with Pikachu, create a function so that it c
 ```{r}
 pokemon_similar <- function(target_pokemon_id) {
   df_subset <- df_text_cossim %>%
-    filter(id_1 == target_pokemon_id) %>%
+    filter(id_1 == target_pokemon_id, gen_id_2 != "Special") %>%
     group_by(gen_id_2) %>%
     slice_max(order_by = cossim, n = 3) %>%
     mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
@@ -251,9 +251,9 @@ pokemon_similar <- function(target_pokemon_id) {
     ) +
     geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
     scale_x_discrete() +
-    scale_y_continuous(breaks = c(0.5, 1.0)) +
+    scale_y_continuous(breaks = c(0.5, 1.0), limits=c(0.0, 1.0)) +
     coord_flip() +
-    scale_fill_discrete(guide = NULL) +
+    scale_fill_discrete(l=40, guide = NULL) +
     labs(
       title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon",
       subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.",
@@ -267,4 +267,48 @@ pokemon_similar <- function(target_pokemon_id) {
 
   ggsave(sprintf("%s_similar_image.png", target_pokemon_id), plot, width = 5, height = 3)
 }
+```
+
+## Most Dissimilar Pokemon by Lowest Median Similarity
+
+```{r}
+df_dissimilar <- df_text_cossim %>%
+  filter(gen_id_1 != "Special") %>%
+  group_by(id_1, gen_id_1) %>%
+  summarize(med_cossim = median(cossim)) %>%
+  ungroup() %>%
+  group_by(gen_id_1) %>%
+  slice_min(order_by = med_cossim, n = 3) %>%
+  mutate(id_1 = as.numeric(levels(id_1))[id_1]) %>%
+  left_join(df_pokemon, by=c("id_1" = "id")) %>%
+  mutate(name = factor(name, levels=rev(name)))
+
+df_dissimilar %>% head()
+```
+
+```{r}
+plot <- ggplot(df_dissimilar, aes(x = name, y = med_cossim, fill = gen_id_1)) +
+  geom_bar(stat="identity") +
+  geom_image(
+    aes(image = sprintf("pokemon_images.nosync/%s.png", id_1), y=0),
+    size = 0.30,
+    nudge_y = 0.05
+  ) +
+  geom_text(aes(label = sprintf("%.3f", med_cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = c(0.5, 1.0), limits=c(0.0, 1.0)) +
+  coord_flip() +
+  scale_fill_discrete(l=40, guide = NULL) +
+  labs(
+    title = "Pokémon With Lowest Median Cosine Similarity vs. All Other Pokémon, by Generation",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC.",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  ) +
+  facet_wrap(vars(gen_id_1), nrow=3, scales="free_y")
+
+ggsave("pokemon_dissimilar_text.png", plot, width = 5, height = 3)
 ```
