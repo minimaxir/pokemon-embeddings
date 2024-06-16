@@ -74,6 +74,8 @@ df_text_cossim <- df_cosines %>%
 df_image_cossim <- df_cosines %>%
   filter(cossim_type == "image") %>%
   mutate(cossim_norm = normalize_range(cossim))
+df_umap_cossim <- df_cosines %>%
+  filter(cossim_type == "umap_2d")
 ```
 
 
@@ -174,7 +176,7 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
   ) +
   geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
   scale_x_discrete() +
-  scale_y_continuous(breaks = c(0.5, 1.0), limits=c(0.0, 1.0)) +
+  scale_y_continuous(breaks = c(0.5, 1.0)) +
   coord_flip() +
   scale_fill_discrete(l=40, guide = NULL) +
   labs(
@@ -213,7 +215,7 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
   ) +
   geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
   scale_x_discrete() +
-  scale_y_continuous(breaks = c(0.5, 1.0), limits=c(0.0, 1.0)) +
+  scale_y_continuous(breaks = c(0.5, 1.0)) +
   coord_flip() +
   scale_fill_discrete(l=40, guide = NULL) +
   labs(
@@ -228,6 +230,45 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
   facet_wrap(vars(gen_id_2), nrow=3, scales="free_y")
 
 ggsave("pikachu_similar_image.png", plot, width = 5, height = 3)
+```
+
+```{r}
+df_subset <- df_umap_cossim %>%
+  filter(id_1 == target_pokemon_id, gen_id_2 != "Special") %>%
+  group_by(gen_id_2) %>%
+  slice_min(order_by = cossim, n = 3) %>%
+  mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
+  left_join(df_pokemon, by=c("id_2" = "id")) %>%
+  mutate(name = factor(name, levels=rev(name)))
+
+df_subset
+```
+
+```{r}
+plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
+  geom_bar(stat="identity") +
+  geom_image(
+    aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y=0),
+    size = 0.30,
+    nudge_y = 0.05
+  ) +
+  geom_text(aes(label = sprintf("%.1f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+  scale_x_discrete() +
+  scale_y_continuous() +
+  coord_flip() +
+  scale_fill_discrete(l=40, guide = NULL) +
+  labs(
+    title = "Euclidian Distance of a Pikachu 2D UMAP Projection vs. all Pokémon",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC.",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  ) +
+  facet_wrap(vars(gen_id_2), nrow=3, scales="free_y")
+
+ggsave("pikachu_similar_umap.png", plot, width = 5, height = 3)
 ```
 
 Now that there is a working version with Pikachu, create a function so that it can be run in a loop.
@@ -320,19 +361,22 @@ df_umap <- read_parquet("pokemon_embeddings.parquet") %>%
   mutate(gen_id = gen_bucket(id)) %>%
   filter(gen_id != "Special") %>%
   mutate(id = factor(id))  %>%
-  select(id, gen_id, `2d_x`, `2d_y`)
+  select(id, gen_id, umap_2d_x, umap_2d_y)
 
 df_umap %>% head()
 ```
 
 ```{r}
-plot <- ggplot(df_umap, aes(x = `2d_x`, y = `2d_y`, color = gen_id)) +
+plot <- ggplot(df_umap, aes(x = umap_2d_x, y = umap_2d_y, color = gen_id)) +
   geom_point(size=1, stroke=0) +
-  scale_y_continuous(limits=c(NA, -24)) +
+  scale_x_continuous(limits=c(5, 15)) +
+  scale_y_continuous(limits=c(-3, 8)) +
   scale_color_hue(l=40) +
+  guides(color = guide_legend(override.aes = list(size = 2),
+  theme = theme(legend.byrow = TRUE))) +
   labs(
-    title = "Pokémon Similarity by Text Embedding of JSON Metadata",
-    subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.", fill = "Cosine Similarity",
+    title = "2D UMAP Projection of Concatenated Pokémon Text + Image Embeddings",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC. Outliers removed.",
     caption = caption
   ) +
   theme(
@@ -350,5 +394,14 @@ plot <- ggplot(df_umap, aes(x = `2d_x`, y = `2d_y`, color = gen_id)) +
     panel.grid = element_blank(),
   )
 
-ggsave("pokemon_umap.png", plot, width = 5, height = 3)
+ggsave("pokemon_umap.png", plot, width = 4, height = 4)
+```
+
+```{r}
+df_outliers <- df_umap %>%
+  filter(!between(umap_2d_x, 5, 15), !between(umap_2d_y, -3, 8)) %>%
+  mutate(id = as.numeric(levels(id))[id]) %>%
+  left_join(df_pokemon)
+
+df_outliers
 ```
