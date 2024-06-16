@@ -3,6 +3,8 @@ library(tidyverse)
 library(scales)
 library(RColorBrewer)
 library(arrow)
+library(ggtext)
+library(ggimage)
 
 caption <- "Max Woolf — minimaxir.com"
 
@@ -25,7 +27,37 @@ theme_set(theme_minimal(base_size = 8, base_family = "Overpass") +
 ```
 
 ```{r}
+gen_labels <- c(
+  "Gen I" = 1,
+  "Gen II" = 152,
+  "Gen III" = 252,
+  "Gen IV" = 387,
+  "Gen V" = 494,
+  "Gen VI" = 650,
+  "Gen VII" = 722,
+  "Gen VII" = 810,
+  "Gen VIII" = 906,
+  "Special" = 10001
+)
+
+print(names(gen_labels))
+print(gen_labels)
+```
+
+
+```{r}
+gen_bucket <- function(x) {
+  gens <- cut(x, breaks = gen_labels, labels = names(gen_labels)[-length(gen_labels)], right=FALSE)
+
+  # https://stackoverflow.com/a/39126746
+  fct_na_value_to_level(gens, names(gen_labels)[length(gen_labels)])
+}
+
+gen_bucket(10000:10010)
+```
+```{r}
 df_cosines <- read_parquet("pokemon_cossims.parquet") %>%
+  mutate(gen_id_1 = gen_bucket(id_1), gen_id_2 = gen_bucket(id_2)) %>%
   mutate(id_1 = factor(id_1), id_2 = factor(id_2))
 
 df_cosines %>% head()
@@ -45,23 +77,7 @@ df_image_cossim <- df_cosines %>%
 ```
 
 
-```{r}
-gen_labels <- c(
-  "Gen I" = 1,
-  "Gen II" = 152,
-  "Gen III" = 252,
-  "Gen IV" = 387,
-  "Gen V" = 494,
-  "Gen VI" = 650,
-  "Gen VII" = 722,
-  "Gen VII" = 810,
-  "Gen VIII" = 906,
-  "Special" = 10001
-)
 
-print(names(gen_labels))
-print(gen_labels)
-```
 ```{r}
 plot <- ggplot(df_text_cossim, aes(x = id_1, y = id_2, fill = cossim)) +
   geom_raster(stat = "identity", interpolate = FALSE) +
@@ -121,4 +137,58 @@ plot <- ggplot(df_image_cossim, aes(x = id_1, y = id_2, fill = cossim)) +
   )
 
 ggsave("pokemon_cossim_image.png", plot, width = 4, height = 4)
+```
+
+
+## Most Similar Pokemon By Each Generaton
+
+```{r}
+df_pokemon <- read_csv("pokemon.csv") %>%
+  mutate(name = str_to_title(name)) %>%
+  select(id, name)
+
+df_pokemon %>% head()
+```
+
+```{r}
+target_pokemon_id <- 25
+
+df_subset <- df_text_cossim %>%
+  filter(id_1 == target_pokemon_id) %>%
+  group_by(gen_id_2) %>%
+  slice_max(order_by = cossim, n = 3) %>%
+  mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
+  left_join(df_pokemon, by=c("id_2" = "id")) %>%
+  mutate(name = factor(name, levels=rev(name)))
+
+df_subset
+```
+
+```{r}
+plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
+  geom_bar(stat="identity") +
+  geom_image(
+    aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y=0),
+    size = 0.30,
+    nudge_y = 0.05
+  ) +
+  geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = pretty_breaks(4)) +
+  coord_flip() +
+  scale_fill_discrete(guide = NULL) +
+  # scale_fill_viridis_c(option = "viridis", end = 1.0) +
+  labs(
+    title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.",
+    # y = "Cosine Similarity",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  ) +
+  facet_wrap(vars(gen_id_2), nrow=3, scales="free_y")
+
+ggsave("pikachu_similar_generation.png", plot, width = 5, height = 3)
 ```
