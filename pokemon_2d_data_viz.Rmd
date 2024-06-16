@@ -312,3 +312,43 @@ plot <- ggplot(df_dissimilar, aes(x = name, y = med_cossim, fill = gen_id_1)) +
 
 ggsave("pokemon_dissimilar_text.png", plot, width = 5, height = 3)
 ```
+
+## 2D UMAP Projection
+
+```{r}
+df_umap <- read_parquet("pokemon_embeddings.parquet") %>%
+  mutate(gen_id = gen_bucket(id)) %>%
+  filter(gen_id != "Special") %>%
+  mutate(id = factor(id))  %>%
+  select(id, gen_id, `2d_x`, `2d_y`)
+
+df_umap %>% head()
+```
+
+```{r}
+plot <- ggplot(df_umap, aes(x = `2d_x`, y = `2d_y`, color = gen_id)) +
+  geom_point(size=1, stroke=0) +
+  scale_y_continuous(limits=c(NA, -24)) +
+  scale_color_hue(l=40) +
+  labs(
+    title = "Pokémon Similarity by Text Embedding of JSON Metadata",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.", fill = "Cosine Similarity",
+    caption = caption
+  ) +
+  theme(
+    legend.position = "top",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 5, margin = margin(c(0.05, 0.0, 0.0, 0.0), unit = "cm")),
+    legend.key.width = unit(0.75, unit = "cm"),
+    legend.key.height = unit(0.25, unit = "cm"),
+    legend.margin = margin(c(0.0, 0.5, -0.2, 0.4), unit = "cm"),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank(),
+  )
+
+ggsave("pokemon_umap.png", plot, width = 5, height = 3)
+```
