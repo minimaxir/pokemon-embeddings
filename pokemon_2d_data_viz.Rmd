@@ -146,7 +146,10 @@ ggsave("pokemon_cossim_image.png", plot, width = 4, height = 4)
 
 ```{r}
 df_pokemon <- read_csv("pokemon.csv") %>%
-  mutate(name = str_to_title(name)) %>%
+  mutate(
+    name = str_to_title(name),
+    name = str_replace_all(name, "-", " ")
+  ) %>%
   select(id, name)
 
 df_pokemon %>% head()
@@ -290,30 +293,45 @@ ggsave("pikachu_similar_umap.png", plot, width = 5, height = 3)
 Now that there is a working version with Pikachu, create a function so that it can be run in a loop.
 
 ```{r}
-pokemon_similar <- function(target_pokemon_id) {
-  df_subset <- df_text_cossim %>%
+pokemon_similar <- function(target_pokemon_id, type = "Text") {
+  if (type == "Text") {
+    df_subset <- df_text_cossim
+  } else if (type == "Image") {
+    df_subset <- df_image_cossim
+  }
+
+  df_subset <- df_subset %>%
     filter(id_1 == target_pokemon_id, gen_id_2 != "Special") %>%
     group_by(gen_id_2) %>%
     slice_max(order_by = cossim, n = 3) %>%
     mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
     left_join(df_pokemon, by = c("id_2" = "id")) %>%
-    mutate(name = factor(name, levels = rev(name)))
+    mutate(
+      labels = sprintf("<img src='pokemon_images.nosync/%s.png' width=13>", id_2),
+      labels = factor(labels, levels = rev(labels)),
+      name = factor(name, levels = rev(name))
+    )
+
+  poke_name <- df_pokemon %>%
+    filter(id == target_pokemon_id) %>%
+    pull(name)
 
   plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
     geom_bar(stat = "identity") +
-    geom_image(
-      aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y = 0),
-      size = 0.30,
-      nudge_y = 0.05
+    geom_richtext(
+      aes(label = labels, y = 0),
+      fill = NA, label.color = NA,
+      label.padding = grid::unit(rep(0, 4), "pt"),
+      nudge_y = 0.05,
     ) +
     geom_text(aes(label = sprintf("%.3f", cossim)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
     scale_x_discrete() +
-    scale_y_continuous(breaks = c(0.5, 1.0), limits = c(0.0, 1.0)) +
+    scale_y_continuous(breaks = c(0.5, 1.0)) +
     coord_flip() +
     scale_fill_discrete(l = 40, guide = NULL) +
     labs(
-      title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon",
-      subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.",
+      title = sprintf("Cosine Similarities of a %s %s Embedding vs. all Pokémon", poke_name, type),
+      subtitle = "Higher is more similar. All Pokémon up to Scarlet/Violet DLC.",
       caption = caption
     ) +
     theme(
@@ -322,8 +340,63 @@ pokemon_similar <- function(target_pokemon_id) {
     ) +
     facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
-  ggsave(sprintf("%s_similar_image.png", target_pokemon_id), plot, width = 5, height = 3)
+  # ggsave(tolower(sprintf("%s_similar_%s.png", target_pokemon_id, type)), plot, width = 5, height = 3)
+  ggsave(tolower(sprintf("pokemon_similarity.nosync/%s_similar_%s.png", target_pokemon_id, type)), plot, width = 5, height = 3)
 }
+```
+
+```{r}
+temp <- map(1:251, pokemon_similar, type = "Text")
+temp <- map(1:251, pokemon_similar, type = "Image")
+```
+
+```{r}
+pokemon_similar_umap <- function(target_pokemon_id) {
+  df_subset <- df_umap_cossim %>%
+    filter(id_1 == target_pokemon_id, gen_id_2 != "Special") %>%
+    group_by(gen_id_2) %>%
+    slice_min(order_by = cossim, n = 3) %>%
+    mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
+    left_join(df_pokemon, by = c("id_2" = "id")) %>%
+    mutate(
+      labels = sprintf("%s <img src='pokemon_images.nosync/%s.png' width=13>", name, id_2),
+      labels = factor(labels, levels = rev(labels)),
+      name = factor(name, levels = rev(name))
+    )
+
+  poke_name <- df_pokemon %>%
+    filter(id == target_pokemon_id) %>%
+    pull(name)
+
+  plot <- ggplot(df_subset, aes(x = labels, y = cossim, fill = gen_id_2)) +
+    geom_bar(stat = "identity") +
+    geom_text(aes(label = sprintf("%.1f", cossim), color = gen_id_2), family = "Overpass", size = 2, hjust = -0.5) +
+    scale_x_discrete() +
+    scale_y_continuous() +
+    coord_flip() +
+    scale_fill_discrete(l = 40, guide = NULL) +
+    scale_color_discrete(l = 40, guide = NULL) +
+    labs(
+      title = sprintf("Euclidian Distance of a %s UMAP Projection vs. all Pokémon", poke_name),
+      subtitle = "Lower is more similar. All Pokémon up to Scarlet/Violet DLC.",
+      caption = caption
+    ) +
+    theme(
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      axis.text.y = element_markdown(),
+      panel.grid.minor = element_blank(),
+      panel.grid.major.y = element_blank()
+    ) +
+    facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
+
+  # ggsave(tolower(sprintf("%s_similar_%s.png", target_pokemon_id, type)), plot, width = 5, height = 3)
+  ggsave(tolower(sprintf("pokemon_similarity.nosync/%s_similar_umap.png", target_pokemon_id)), plot, width = 5, height = 3)
+}
+```
+
+```{r}
+temp <- map(1:251, pokemon_similar_umap)
 ```
 
 ## Most Dissimilar Pokemon by Lowest Median Similarity
