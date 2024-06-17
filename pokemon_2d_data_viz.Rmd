@@ -47,7 +47,7 @@ print(gen_labels)
 
 ```{r}
 gen_bucket <- function(x) {
-  gens <- cut(x, breaks = gen_labels, labels = names(gen_labels)[-length(gen_labels)], right=FALSE)
+  gens <- cut(x, breaks = gen_labels, labels = names(gen_labels)[-length(gen_labels)], right = FALSE)
 
   # https://stackoverflow.com/a/39126746
   fct_na_value_to_level(gens, names(gen_labels)[length(gen_labels)])
@@ -160,35 +160,43 @@ df_subset <- df_text_cossim %>%
   group_by(gen_id_2) %>%
   slice_max(order_by = cossim, n = 3) %>%
   mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
-  left_join(df_pokemon, by=c("id_2" = "id")) %>%
-  mutate(name = factor(name, levels=rev(name)))
+  left_join(df_pokemon, by = c("id_2" = "id")) %>%
+  mutate(
+    labels = sprintf("<img src='pokemon_images.nosync/%s.png' width=13>", id_2),
+    labels = factor(labels, levels = rev(labels)),
+    name = factor(name, levels = rev(name)),
+  )
+
+# labels <- df_subset %>% pull(labels)
+# names(labels) <- df_subset %>% pull(name)
 
 df_subset
 ```
 
 ```{r}
 plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
-  geom_bar(stat="identity") +
-  geom_image(
-    aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y=0),
-    size = 0.30,
-    nudge_y = 0.05
+  geom_bar(stat = "identity") +
+  geom_richtext(
+    aes(label = labels, y = 0),
+    fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"),
+    nudge_y = 0.05,
   ) +
-  geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+  geom_text(aes(label = sprintf("%.3f", cossim)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
   scale_x_discrete() +
   scale_y_continuous(breaks = c(0.5, 1.0)) +
   coord_flip() +
-  scale_fill_discrete(l=40, guide = NULL) +
+  scale_fill_discrete(l = 40, guide = NULL) +
   labs(
     title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon Embeddings",
-    subtitle = "All Pokémon up to Scarlet/Violet DLC.",
+    subtitle = "Higher is more similar. All Pokémon up to Scarlet/Violet DLC.",
     caption = caption
   ) +
   theme(
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
   ) +
-  facet_wrap(vars(gen_id_2), nrow=3, scales="free_y")
+  facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
 ggsave("pikachu_similar_text.png", plot, width = 5, height = 3)
 ```
@@ -199,35 +207,40 @@ df_subset <- df_image_cossim %>%
   group_by(gen_id_2) %>%
   slice_max(order_by = cossim, n = 3) %>%
   mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
-  left_join(df_pokemon, by=c("id_2" = "id")) %>%
-  mutate(name = factor(name, levels=rev(name)))
+  left_join(df_pokemon, by = c("id_2" = "id")) %>%
+  mutate(
+    labels = sprintf("<img src='pokemon_images.nosync/%s.png' width=13>", id_2),
+    labels = factor(labels, levels = rev(labels)),
+    name = factor(name, levels = rev(name))
+  )
 
 df_subset
 ```
 
 ```{r}
 plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
-  geom_bar(stat="identity") +
-  geom_image(
-    aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y=0),
-    size = 0.30,
-    nudge_y = 0.05
+  geom_bar(stat = "identity") +
+  geom_richtext(
+    aes(label = labels, y = 0),
+    fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"),
+    nudge_y = 0.05,
   ) +
-  geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+  geom_text(aes(label = sprintf("%.3f", cossim)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
   scale_x_discrete() +
   scale_y_continuous(breaks = c(0.5, 1.0)) +
   coord_flip() +
-  scale_fill_discrete(l=40, guide = NULL) +
+  scale_fill_discrete(l = 40, guide = NULL) +
   labs(
     title = "Cosine Similarities of a Pikachu Image Embedding vs. all Pokémon",
-    subtitle = "All Pokémon up to Scarlet/Violet DLC.",
+    subtitle = "Higher is more similar. All Pokémon up to Scarlet/Violet DLC.",
     caption = caption
   ) +
   theme(
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
   ) +
-  facet_wrap(vars(gen_id_2), nrow=3, scales="free_y")
+  facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
 ggsave("pikachu_similar_image.png", plot, width = 5, height = 3)
 ```
@@ -238,35 +251,38 @@ df_subset <- df_umap_cossim %>%
   group_by(gen_id_2) %>%
   slice_min(order_by = cossim, n = 3) %>%
   mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
-  left_join(df_pokemon, by=c("id_2" = "id")) %>%
-  mutate(name = factor(name, levels=rev(name)))
+  left_join(df_pokemon, by = c("id_2" = "id")) %>%
+  mutate(
+    labels = sprintf("%s <img src='pokemon_images.nosync/%s.png' width=13>", name, id_2),
+    labels = factor(labels, levels = rev(labels)),
+    name = factor(name, levels = rev(name))
+  )
 
 df_subset
 ```
 
 ```{r}
-plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
-  geom_bar(stat="identity") +
-  geom_image(
-    aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y=0),
-    size = 0.30,
-    nudge_y = 0.05
-  ) +
-  geom_text(aes(label = sprintf("%.1f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+plot <- ggplot(df_subset, aes(x = labels, y = cossim, fill = gen_id_2)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = sprintf("%.1f", cossim), color = gen_id_2), family = "Overpass", size = 2, hjust = -0.5) +
   scale_x_discrete() +
   scale_y_continuous() +
   coord_flip() +
-  scale_fill_discrete(l=40, guide = NULL) +
+  scale_fill_discrete(l = 40, guide = NULL) +
+  scale_color_discrete(l = 40, guide = NULL) +
   labs(
     title = "Euclidian Distance of a Pikachu 2D UMAP Projection vs. all Pokémon",
-    subtitle = "All Pokémon up to Scarlet/Violet DLC.",
+    subtitle = "Lower is more similar. All Pokémon up to Scarlet/Violet DLC.",
     caption = caption
   ) +
   theme(
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
+    axis.text.y = element_markdown(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank()
   ) +
-  facet_wrap(vars(gen_id_2), nrow=3, scales="free_y")
+  facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
 ggsave("pikachu_similar_umap.png", plot, width = 5, height = 3)
 ```
@@ -280,21 +296,21 @@ pokemon_similar <- function(target_pokemon_id) {
     group_by(gen_id_2) %>%
     slice_max(order_by = cossim, n = 3) %>%
     mutate(id_2 = as.numeric(levels(id_2))[id_2]) %>%
-    left_join(df_pokemon, by=c("id_2" = "id")) %>%
-    mutate(name = factor(name, levels=rev(name)))
+    left_join(df_pokemon, by = c("id_2" = "id")) %>%
+    mutate(name = factor(name, levels = rev(name)))
 
   plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
-    geom_bar(stat="identity") +
+    geom_bar(stat = "identity") +
     geom_image(
-      aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y=0),
+      aes(image = sprintf("pokemon_images.nosync/%s.png", id_2), y = 0),
       size = 0.30,
       nudge_y = 0.05
     ) +
-    geom_text(aes(label = sprintf("%.3f", cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+    geom_text(aes(label = sprintf("%.3f", cossim)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
     scale_x_discrete() +
-    scale_y_continuous(breaks = c(0.5, 1.0), limits=c(0.0, 1.0)) +
+    scale_y_continuous(breaks = c(0.5, 1.0), limits = c(0.0, 1.0)) +
     coord_flip() +
-    scale_fill_discrete(l=40, guide = NULL) +
+    scale_fill_discrete(l = 40, guide = NULL) +
     labs(
       title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon",
       subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.",
@@ -304,7 +320,7 @@ pokemon_similar <- function(target_pokemon_id) {
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
     ) +
-    facet_wrap(vars(gen_id_2), nrow=3, scales="free_y")
+    facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
   ggsave(sprintf("%s_similar_image.png", target_pokemon_id), plot, width = 5, height = 3)
 }
@@ -321,25 +337,25 @@ df_dissimilar <- df_text_cossim %>%
   group_by(gen_id_1) %>%
   slice_min(order_by = med_cossim, n = 3) %>%
   mutate(id_1 = as.numeric(levels(id_1))[id_1]) %>%
-  left_join(df_pokemon, by=c("id_1" = "id")) %>%
-  mutate(name = factor(name, levels=rev(name)))
+  left_join(df_pokemon, by = c("id_1" = "id")) %>%
+  mutate(name = factor(name, levels = rev(name)))
 
 df_dissimilar %>% head()
 ```
 
 ```{r}
 plot <- ggplot(df_dissimilar, aes(x = name, y = med_cossim, fill = gen_id_1)) +
-  geom_bar(stat="identity") +
+  geom_bar(stat = "identity") +
   geom_image(
-    aes(image = sprintf("pokemon_images.nosync/%s.png", id_1), y=0),
+    aes(image = sprintf("pokemon_images.nosync/%s.png", id_1), y = 0),
     size = 0.30,
     nudge_y = 0.05
   ) +
-  geom_text(aes(label = sprintf("%.3f", med_cossim)), family="Overpass", color="white", size=2, hjust=1.25) +
+  geom_text(aes(label = sprintf("%.3f", med_cossim)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
   scale_x_discrete() +
-  scale_y_continuous(breaks = c(0.5, 1.0), limits=c(0.0, 1.0)) +
+  scale_y_continuous(breaks = c(0.5, 1.0), limits = c(0.0, 1.0)) +
   coord_flip() +
-  scale_fill_discrete(l=40, guide = NULL) +
+  scale_fill_discrete(l = 40, guide = NULL) +
   labs(
     title = "Pokémon With Lowest Median Cosine Similarity vs. All Other Pokémon, by Generation",
     subtitle = "All Pokémon up to Scarlet/Violet DLC.",
@@ -349,7 +365,7 @@ plot <- ggplot(df_dissimilar, aes(x = name, y = med_cossim, fill = gen_id_1)) +
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
   ) +
-  facet_wrap(vars(gen_id_1), nrow=3, scales="free_y")
+  facet_wrap(vars(gen_id_1), nrow = 3, scales = "free_y")
 
 ggsave("pokemon_dissimilar_text.png", plot, width = 5, height = 3)
 ```
@@ -360,7 +376,7 @@ ggsave("pokemon_dissimilar_text.png", plot, width = 5, height = 3)
 df_umap <- read_parquet("pokemon_embeddings.parquet") %>%
   mutate(gen_id = gen_bucket(id)) %>%
   filter(gen_id != "Special") %>%
-  mutate(id = factor(id))  %>%
+  mutate(id = factor(id)) %>%
   select(id, gen_id, umap_2d_x, umap_2d_y)
 
 df_umap %>% head()
@@ -368,12 +384,14 @@ df_umap %>% head()
 
 ```{r}
 plot <- ggplot(df_umap, aes(x = umap_2d_x, y = umap_2d_y, color = gen_id)) +
-  geom_point(size=1, stroke=0) +
-  scale_x_continuous(limits=c(5, 15)) +
-  scale_y_continuous(limits=c(-3, 8)) +
-  scale_color_hue(l=40) +
-  guides(color = guide_legend(override.aes = list(size = 2),
-  theme = theme(legend.byrow = TRUE))) +
+  geom_point(size = 1, stroke = 0) +
+  scale_x_continuous(limits = c(5, 15)) +
+  scale_y_continuous(limits = c(-3, 8)) +
+  scale_color_hue(l = 40) +
+  guides(color = guide_legend(
+    override.aes = list(size = 2),
+    theme = theme(legend.byrow = TRUE)
+  )) +
   labs(
     title = "2D UMAP Projection of Concatenated Pokémon Text + Image Embeddings",
     subtitle = "All Pokémon up to Scarlet/Violet DLC. Outliers removed.",
