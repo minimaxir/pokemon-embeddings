@@ -496,3 +496,26 @@ df_outliers <- df_umap %>%
 
 df_outliers
 ```
+
+## Histogram of Token Counts
+
+```{r}
+df_counts <- read_csv("token_counts.csv")
+
+df_counts %>% head()
+```
+
+```{r}
+plot <- ggplot(df_counts, aes(x = counts)) +
+  geom_histogram(binwidth = 100, fill = "#23252F") +
+  scale_x_continuous(limits = c(2^9, 2^13), breaks = 2^(9:13), minor_breaks = NULL) +
+  scale_fill_hue(guide = "none") +
+  labs(
+    title = "Distribution of Token Lengths of Pokémon Raw JSON Metadata",
+    subtitle = "Using the bert-base-uncased tokenizer.",
+    x = "Encoded Token Count", y = "# of Pokémon",
+    caption = caption
+  )
+
+ggsave("token_counts.png", plot, width = 4, height = 2)
+```
