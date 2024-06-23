@@ -4,7 +4,6 @@ library(scales)
 library(RColorBrewer)
 library(arrow)
 library(ggtext)
-library(ggimage)
 
 caption <- "Max Woolf — minimaxir.com"
 
@@ -69,13 +68,19 @@ normalize_range <- function(x) {
 }
 
 df_text_cossim <- df_cosines %>%
-  filter(cossim_type == "text") %>%
+  filter(cossim_type == "text", gen_id_1
+  != "Special", gen_id_2
+  != "Special") %>%
   mutate(cossim_norm = normalize_range(cossim))
 df_image_cossim <- df_cosines %>%
-  filter(cossim_type == "image") %>%
+  filter(cossim_type == "image", gen_id_1
+  != "Special", gen_id_2
+  != "Special") %>%
   mutate(cossim_norm = normalize_range(cossim))
 df_umap_cossim <- df_cosines %>%
-  filter(cossim_type == "umap_2d")
+  filter(cossim_type == "umap_2d", gen_id_1
+  != "Special", gen_id_2
+  != "Special")
 ```
 
 
@@ -88,7 +93,7 @@ plot <- ggplot(df_text_cossim, aes(x = id_1, y = id_2, fill = cossim)) +
   scale_fill_viridis_c(option = "viridis", end = 1.0) +
   labs(
     title = "Pokémon Similarity by Text Embedding of JSON Metadata",
-    subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.", fill = "Cosine Similarity",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC.", fill = "Cosine Similarity",
     caption = caption
   ) +
   theme(
@@ -119,7 +124,7 @@ plot <- ggplot(df_image_cossim, aes(x = id_1, y = id_2, fill = cossim)) +
   scale_fill_viridis_c(option = "inferno", end = 1.0) +
   labs(
     title = "Pokémon Similarity by Image Embedding of JSON Metadata",
-    subtitle = "All Pokémon up to Scarlet/Violet DLC. \"Special\" includes Mega Evolutions, Formes, etc.", fill = "Cosine Similarity",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC.", fill = "Cosine Similarity",
     caption = caption
   ) +
   theme(
@@ -191,13 +196,14 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
   coord_flip() +
   scale_fill_discrete(l = 40, guide = NULL) +
   labs(
-    title = "Cosine Similarities of a Pikachu Text Embedding vs. all Pokémon Embeddings",
+    title = "Cosine Similarities of a <img src='pokemon_images.nosync/25.png' width=9> Pikachu Text Embedding vs. all Pokémon Embeddings",
     subtitle = "Higher is more similar. All Pokémon up to Scarlet/Violet DLC.",
     caption = caption
   ) +
   theme(
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
+    plot.title = element_markdown(),
   ) +
   facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
@@ -235,13 +241,14 @@ plot <- ggplot(df_subset, aes(x = name, y = cossim, fill = gen_id_2)) +
   coord_flip() +
   scale_fill_discrete(l = 40, guide = NULL) +
   labs(
-    title = "Cosine Similarities of a Pikachu Image Embedding vs. all Pokémon",
+    title = "Cosine Similarities of a <img src='pokemon_images.nosync/25.png' width=9> Pikachu Image Embedding vs. all Pokémon",
     subtitle = "Higher is more similar. All Pokémon up to Scarlet/Violet DLC.",
     caption = caption
   ) +
   theme(
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
+    plot.title = element_markdown(),
   ) +
   facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
@@ -274,7 +281,7 @@ plot <- ggplot(df_subset, aes(x = labels, y = cossim, fill = gen_id_2)) +
   scale_fill_discrete(l = 40, guide = NULL) +
   scale_color_discrete(l = 40, guide = NULL) +
   labs(
-    title = "Euclidian Distance of a Pikachu 2D UMAP Projection vs. all Pokémon",
+    title = "Euclidian Distance of a <img src='pokemon_images.nosync/25.png' width=9> Pikachu 2D UMAP Projection vs. all Pokémon",
     subtitle = "Lower is more similar. All Pokémon up to Scarlet/Violet DLC.",
     caption = caption
   ) +
@@ -283,7 +290,8 @@ plot <- ggplot(df_subset, aes(x = labels, y = cossim, fill = gen_id_2)) +
     axis.title.y = element_blank(),
     axis.text.y = element_markdown(),
     panel.grid.minor = element_blank(),
-    panel.grid.major.y = element_blank()
+    panel.grid.major.y = element_blank(),
+    plot.title = element_markdown(),
   ) +
   facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
@@ -330,13 +338,14 @@ pokemon_similar <- function(target_pokemon_id, type = "Text") {
     coord_flip() +
     scale_fill_discrete(l = 40, guide = NULL) +
     labs(
-      title = sprintf("Cosine Similarities of a %s %s Embedding vs. all Pokémon", poke_name, type),
+      title = sprintf("Cosine Similarities of a <img src='pokemon_images.nosync/%s.png' width=9> %s %s Embedding vs. all Pokémon", target_pokemon_id, poke_name, type),
       subtitle = "Higher is more similar. All Pokémon up to Scarlet/Violet DLC.",
       caption = caption
     ) +
     theme(
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),
+      plot.title = element_markdown(),
     ) +
     facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
@@ -377,7 +386,7 @@ pokemon_similar_umap <- function(target_pokemon_id) {
     scale_fill_discrete(l = 40, guide = NULL) +
     scale_color_discrete(l = 40, guide = NULL) +
     labs(
-      title = sprintf("Euclidian Distance of a %s UMAP Projection vs. all Pokémon", poke_name),
+      title = sprintf("Euclidian Distance of a <img src='pokemon_images.nosync/%s.png' width=9> %s UMAP Projection vs. all Pokémon", target_pokemon_id, poke_name),
       subtitle = "Lower is more similar. All Pokémon up to Scarlet/Violet DLC.",
       caption = caption
     ) +
@@ -386,7 +395,8 @@ pokemon_similar_umap <- function(target_pokemon_id) {
       axis.title.y = element_blank(),
       axis.text.y = element_markdown(),
       panel.grid.minor = element_blank(),
-      panel.grid.major.y = element_blank()
+      panel.grid.major.y = element_blank(),
+      plot.title = element_markdown(),
     ) +
     facet_wrap(vars(gen_id_2), nrow = 3, scales = "free_y")
 
