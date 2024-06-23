@@ -4,6 +4,7 @@ library(scales)
 library(RColorBrewer)
 library(arrow)
 library(ggtext)
+library(ggimage)
 
 caption <- "Max Woolf — minimaxir.com"
 
@@ -440,7 +441,7 @@ plot <- ggplot(df_dissimilar, aes(x = name, y = med_cossim, fill = gen_id_1)) +
   coord_flip() +
   scale_fill_discrete(l = 40, guide = NULL) +
   labs(
-    title = "Pokémon With Lowest Median Cosine Similarity vs. All Other Pokémon, by Generation",
+    title = "Pokémon With Lowest Median Text Embedding Cosine Similarity vs. Other Pokémon",
     subtitle = "All Pokémon up to Scarlet/Violet DLC.",
     caption = caption
   ) +
@@ -451,6 +452,48 @@ plot <- ggplot(df_dissimilar, aes(x = name, y = med_cossim, fill = gen_id_1)) +
   facet_wrap(vars(gen_id_1), nrow = 3, scales = "free_y")
 
 ggsave("pokemon_dissimilar_text.png", plot, width = 5, height = 3)
+```
+
+```{r}
+df_dissimilar <- df_image_cossim %>%
+  filter(gen_id_1 != "Special") %>%
+  group_by(id_1, gen_id_1) %>%
+  summarize(med_cossim = median(cossim)) %>%
+  ungroup() %>%
+  group_by(gen_id_1) %>%
+  slice_min(order_by = med_cossim, n = 3) %>%
+  mutate(id_1 = as.numeric(levels(id_1))[id_1]) %>%
+  left_join(df_pokemon, by = c("id_1" = "id")) %>%
+  mutate(name = factor(name, levels = rev(name)))
+
+df_dissimilar %>% head()
+```
+
+```{r}
+plot <- ggplot(df_dissimilar, aes(x = name, y = med_cossim, fill = gen_id_1)) +
+  geom_bar(stat = "identity") +
+  geom_image(
+    aes(image = sprintf("pokemon_images.nosync/%s.png", id_1), y = 0),
+    size = 0.30,
+    nudge_y = 0.05
+  ) +
+  geom_text(aes(label = sprintf("%.3f", med_cossim)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = c(0.5, 1.0), limits = c(0.0, 1.0)) +
+  coord_flip() +
+  scale_fill_discrete(l = 40, guide = NULL) +
+  labs(
+    title = "Pokémon With Lowest Median Image Embedding Cosine Similarity vs. Other Pokémon",
+    subtitle = "All Pokémon up to Scarlet/Violet DLC.",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  ) +
+  facet_wrap(vars(gen_id_1), nrow = 3, scales = "free_y")
+
+ggsave("pokemon_dissimilar_image.png", plot, width = 5, height = 3)
 ```
 
 ## 2D UMAP Projection
