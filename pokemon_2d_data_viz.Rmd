@@ -774,6 +774,7 @@ plot <- ggplot(df_qa, aes(x = name, y = prob)) +
     axis.title.y = element_blank(),
     axis.text.x = element_text(size = 8),
     axis.text.y = element_text(size = 8),
+    plot.margin = unit(c(0.25, 0.25, 0.25, 0.75), "cm"),
   )
 
 ggsave("featured.png", plot, width = 3.5, height = 2)

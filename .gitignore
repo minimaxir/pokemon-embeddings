@@ -6,3 +6,4 @@ all_pokemon_data.json
 embeddings.*
 /pokemon_images.nosync
 /pokemon_embeddings.nosync
+/pokemon_similarity.nosync
