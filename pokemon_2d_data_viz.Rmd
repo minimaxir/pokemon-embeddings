@@ -734,3 +734,47 @@ plot <- ggplot(df_qa, aes(x = name, y = prob)) +
 
 ggsave("qa_4.png", plot, width = 3.5, height = 2)
 ```
+
+## Featured Photo for Article
+
+```{r}
+df_qa <- read_csv("q1.csv") %>%
+  head(3) %>%
+  mutate(
+    labels = sprintf("<img src='pokemon_images.nosync/%s.png' width=34>", id),
+    labels = factor(labels, levels = rev(labels)),
+    name = factor(name, levels = rev(name))
+  )
+
+df_qa %>% head()
+```
+
+```{r}
+plot <- ggplot(df_qa, aes(x = name, y = prob)) +
+  geom_bar(stat = "identity", fill = "#23252F") +
+  geom_richtext(
+    aes(label = labels, y = 0),
+    fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"),
+    nudge_y = 0.005,
+  ) +
+  geom_text(aes(label = sprintf("%.3f", prob)), family = "Overpass", color = "white", size = 3, hjust = 1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = c(0.05, 0.10), limits = c(NA, 0.1)) +
+  coord_flip() +
+  scale_fill_discrete(guide = NULL) +
+  labs(
+    title = "What looks like an ice cream cone?",
+    y = "Cosine Similarity",
+    # subtitle = "Higher is more similar.",
+    # caption = caption
+  ) +
+  theme(
+    # axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(size = 8),
+    axis.text.y = element_text(size = 8),
+  )
+
+ggsave("featured.png", plot, width = 3.5, height = 2)
+```
