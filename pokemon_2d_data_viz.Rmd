@@ -572,3 +572,165 @@ plot <- ggplot(df_counts, aes(x = counts)) +
 
 ggsave("token_counts.png", plot, width = 4, height = 2)
 ```
+
+## Multimodal QA
+
+```{r}
+df_qa <- read_csv("q1.csv") %>%
+  head(6) %>%
+  mutate(
+    labels = sprintf("<img src='pokemon_images.nosync/%s.png' width=14>", id),
+    labels = factor(labels, levels = rev(labels)),
+    name = factor(name, levels = rev(name))
+  )
+
+df_qa %>% head()
+```
+
+```{r}
+plot <- ggplot(df_qa, aes(x = name, y = prob)) +
+  geom_bar(stat = "identity", fill = "#23252F") +
+  geom_richtext(
+    aes(label = labels, y = 0),
+    fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"),
+    nudge_y = -0.005,
+  ) +
+  geom_text(aes(label = sprintf("%.3f", prob)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = c(0.05, 0.10), limits = c(NA, 0.1)) +
+  coord_flip() +
+  scale_fill_discrete(guide = NULL) +
+  labs(
+    title = "What looks like an ice cream cone?",
+    # y = "Cosine Similarity of text Embedding and Image Embedding",
+    subtitle = "Cosine similarity of question text embedding and Pokémon image embedding.\nHigher is more similar.",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  )
+
+ggsave("qa_1.png", plot, width = 3.5, height = 2)
+```
+
+```{r}
+df_qa <- read_csv("q2.csv") %>%
+  head(6) %>%
+  mutate(
+    labels = sprintf("<img src='pokemon_images.nosync/%s.png' width=14>", id),
+    labels = factor(labels, levels = rev(labels)),
+    name = factor(name, levels = rev(name))
+  )
+
+df_qa %>% head()
+```
+
+```{r}
+plot <- ggplot(df_qa, aes(x = name, y = prob)) +
+  geom_bar(stat = "identity", fill = "#23252F") +
+  geom_richtext(
+    aes(label = labels, y = 0),
+    fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"),
+    nudge_y = -0.005,
+  ) +
+  geom_text(aes(label = sprintf("%.3f", prob)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = c(0.05, 0.10), limits = c(NA, 0.1)) +
+  coord_flip() +
+  scale_fill_discrete(guide = NULL) +
+  labs(
+    title = "What looks like an orange cat?",
+    # y = "Cosine Similarity of text Embedding and Image Embedding",
+    subtitle = "Cosine similarity of question text embedding and Pokémon image embedding.\nHigher is more similar.",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  )
+
+ggsave("qa_2.png", plot, width = 3.5, height = 2)
+```
+
+```{r}
+df_qa <- read_csv("q3.csv") %>%
+  head(6) %>%
+  mutate(
+    labels = sprintf("<img src='pokemon_images.nosync/%s.png' width=14>", id),
+    labels = factor(labels, levels = rev(labels)),
+    name = factor(name, levels = rev(name))
+  )
+
+df_qa %>% head()
+```
+
+```{r}
+plot <- ggplot(df_qa, aes(x = name, y = prob)) +
+  geom_bar(stat = "identity", fill = "#23252F") +
+  geom_richtext(
+    aes(label = labels, y = 0),
+    fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"),
+    nudge_y = -0.005,
+  ) +
+  geom_text(aes(label = sprintf("%.3f", prob)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = c(0.05, 0.10), limits = c(NA, 0.1)) +
+  coord_flip() +
+  scale_fill_discrete(guide = NULL) +
+  labs(
+    title = "What has only one eye?",
+    # y = "Cosine Similarity of text Embedding and Image Embedding",
+    subtitle = "Cosine similarity of question text embedding and Pokémon image embedding.\nHigher is more similar.",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  )
+
+ggsave("qa_3.png", plot, width = 3.5, height = 2)
+```
+
+```{r}
+df_qa <- read_csv("q4.csv") %>%
+  head(6) %>%
+  mutate(
+    labels = sprintf("<img src='pokemon_images.nosync/%s.png' width=14>", id),
+    labels = factor(labels, levels = rev(labels)),
+    name = factor(name, levels = rev(name))
+  )
+
+df_qa %>% head()
+```
+
+```{r}
+plot <- ggplot(df_qa, aes(x = name, y = prob)) +
+  geom_bar(stat = "identity", fill = "#23252F") +
+  geom_richtext(
+    aes(label = labels, y = 0),
+    fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"),
+    nudge_y = -0.005,
+  ) +
+  geom_text(aes(label = sprintf("%.3f", prob)), family = "Overpass", color = "white", size = 2, hjust = 1.25) +
+  scale_x_discrete() +
+  scale_y_continuous(breaks = c(0.05, 0.10), limits = c(NA, 0.11)) +
+  coord_flip() +
+  scale_fill_discrete(guide = NULL) +
+  labs(
+    title = "What is a cute bug?",
+    # y = "Cosine Similarity of text Embedding and Image Embedding",
+    subtitle = "Cosine similarity of question text embedding and Pokémon image embedding.\nHigher is more similar.",
+    caption = caption
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+  )
+
+ggsave("qa_4.png", plot, width = 3.5, height = 2)
+```
