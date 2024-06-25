@@ -1,1505 +1,1323 @@
 {
-  "data": {
-    "pokemon_v2_pokemon": [
+  "id": 25,
+  "name": "pikachu",
+  "height": 4,
+  "weight": 60,
+  "base_experience": 112,
+  "pokemon_v2_pokemontypes": [
+    {
+      "pokemon_v2_type": {
+        "name": "electric"
+      }
+    }
+  ],
+  "pokemon_v2_pokemonstats": [
+    {
+      "pokemon_v2_stat": {
+        "name": "hp"
+      },
+      "base_stat": 35
+    },
+    {
+      "pokemon_v2_stat": {
+        "name": "attack"
+      },
+      "base_stat": 55
+    },
+    {
+      "pokemon_v2_stat": {
+        "name": "defense"
+      },
+      "base_stat": 40
+    },
+    {
+      "pokemon_v2_stat": {
+        "name": "special-attack"
+      },
+      "base_stat": 50
+    },
+    {
+      "pokemon_v2_stat": {
+        "name": "special-defense"
+      },
+      "base_stat": 50
+    },
+    {
+      "pokemon_v2_stat": {
+        "name": "speed"
+      },
+      "base_stat": 90
+    }
+  ],
+  "pokemon_v2_pokemonabilities": [
+    {
+      "pokemon_v2_ability": {
+        "name": "static"
+      }
+    },
+    {
+      "pokemon_v2_ability": {
+        "name": "lightning-rod"
+      }
+    }
+  ],
+  "pokemon_v2_encounters": [
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "trophy-garden",
+          "pokemon_v2_region": {
+            "name": "sinnoh"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "pallet-town",
+          "pokemon_v2_region": {
+            "name": "kanto"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "kanto-route-2",
+          "pokemon_v2_region": {
+            "name": "kanto"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "viridian-forest",
+          "pokemon_v2_region": {
+            "name": "kanto"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "power-plant",
+          "pokemon_v2_region": {
+            "name": "kanto"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "hoenn-safari-zone",
+          "pokemon_v2_region": {
+            "name": "hoenn"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "hoenn-safari-zone",
+          "pokemon_v2_region": {
+            "name": "hoenn"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "kalos-route-3",
+          "pokemon_v2_region": {
+            "name": "kalos"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "santalune-forest",
+          "pokemon_v2_region": {
+            "name": "kalos"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "slateport-city",
+          "pokemon_v2_region": {
+            "name": "hoenn"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "verdanturf-town",
+          "pokemon_v2_region": {
+            "name": "hoenn"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "fallarbor-town",
+          "pokemon_v2_region": {
+            "name": "hoenn"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "lilycove-city",
+          "pokemon_v2_region": {
+            "name": "hoenn"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "alola-route-1",
+          "pokemon_v2_region": {
+            "name": "alola"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "alola-route-1",
+          "pokemon_v2_region": {
+            "name": "alola"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "hauoli-city",
+          "pokemon_v2_region": {
+            "name": "alola"
+          }
+        }
+      }
+    },
+    {
+      "pokemon_v2_locationarea": {
+        "pokemon_v2_location": {
+          "name": "heahea-city",
+          "pokemon_v2_region": {
+            "name": "alola"
+          }
+        }
+      }
+    }
+  ],
+  "pokemon_v2_pokemonspecy": {
+    "base_happiness": 50,
+    "capture_rate": 190,
+    "forms_switchable": false,
+    "gender_rate": 4,
+    "has_gender_differences": true,
+    "hatch_counter": 10,
+    "is_baby": false,
+    "is_legendary": false,
+    "is_mythical": false,
+    "pokemon_v2_pokemonspeciesflavortexts": [
       {
-        "id": 25,
-        "name": "pikachu",
-        "height": 4,
-        "weight": 60,
-        "base_experience": 112,
-        "pokemon_v2_pokemontypes": [
-          {
-            "pokemon_v2_type": {
-              "name": "electric"
-            }
-          }
-        ],
-        "pokemon_v2_pokemonstats": [
-          {
-            "pokemon_v2_stat": {
-              "name": "hp"
-            },
-            "base_stat": 35
-          },
-          {
-            "pokemon_v2_stat": {
-              "name": "attack"
-            },
-            "base_stat": 55
-          },
-          {
-            "pokemon_v2_stat": {
-              "name": "defense"
-            },
-            "base_stat": 40
-          },
-          {
-            "pokemon_v2_stat": {
-              "name": "special-attack"
-            },
-            "base_stat": 50
-          },
-          {
-            "pokemon_v2_stat": {
-              "name": "special-defense"
-            },
-            "base_stat": 50
-          },
-          {
-            "pokemon_v2_stat": {
-              "name": "speed"
-            },
-            "base_stat": 90
-          }
-        ],
-        "pokemon_v2_pokemonabilities": [
-          {
-            "pokemon_v2_ability": {
-              "name": "static"
-            }
-          },
-          {
-            "pokemon_v2_ability": {
-              "name": "lightning-rod"
-            }
-          }
-        ],
-        "pokemon_v2_encounters": [
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "trophy-garden",
-                "pokemon_v2_region": {
-                  "name": "sinnoh"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "pallet-town",
-                "pokemon_v2_region": {
-                  "name": "kanto"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "kanto-route-2",
-                "pokemon_v2_region": {
-                  "name": "kanto"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "viridian-forest",
-                "pokemon_v2_region": {
-                  "name": "kanto"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "power-plant",
-                "pokemon_v2_region": {
-                  "name": "kanto"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "hoenn-safari-zone",
-                "pokemon_v2_region": {
-                  "name": "hoenn"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "hoenn-safari-zone",
-                "pokemon_v2_region": {
-                  "name": "hoenn"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "kalos-route-3",
-                "pokemon_v2_region": {
-                  "name": "kalos"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "santalune-forest",
-                "pokemon_v2_region": {
-                  "name": "kalos"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "slateport-city",
-                "pokemon_v2_region": {
-                  "name": "hoenn"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "verdanturf-town",
-                "pokemon_v2_region": {
-                  "name": "hoenn"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "fallarbor-town",
-                "pokemon_v2_region": {
-                  "name": "hoenn"
-                }
-              }
-            }
-          },
-          {
-            "pokemon_v2_locationarea": {
-              "pokemon_v2_location": {
-                "name": "lilycove-city",
-                "pokemon_v2_region": {
-                  "name": "hoenn"
-                }
-              }
-            }
-          }
-        ],
-        "pokemon_v2_pokemonspecy": {
-          "base_happiness": 50,
-          "capture_rate": 190,
-          "forms_switchable": false,
-          "gender_rate": 4,
-          "has_gender_differences": true,
-          "hatch_counter": 10,
-          "is_baby": false,
-          "is_legendary": false,
-          "is_mythical": false,
-          "pokemon_v2_pokemonspeciesflavortexts": [
-            {
-              "pokemon_v2_version": {
-                "name": "red"
-              },
-              "flavor_text": "When several of\nthese POKéMON\ngather, their\felectricity could\nbuild and cause\nlightning storms."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "blue"
-              },
-              "flavor_text": "When several of\nthese POKéMON\ngather, their\felectricity could\nbuild and cause\nlightning storms."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "yellow"
-              },
-              "flavor_text": "It keeps its tail\nraised to monitor\nits surroundings.\fIf you yank its\ntail, it will try\nto bite you."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "gold"
-              },
-              "flavor_text": "This intelligent\nPOKéMON roasts\nhard BERRIES with\felectricity to\nmake them tender\nenough to eat."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "silver"
-              },
-              "flavor_text": "It raises its tail\nto check its sur­\nroundings. The\ftail is sometimes\nstruck by light­\nning in this pose."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "crystal"
-              },
-              "flavor_text": "When it is anger­\ned, it immediately\ndischarges the\fenergy stored in\nthe pouches in its\ncheeks."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "ruby"
-              },
-              "flavor_text": "Whenever PIKACHU comes across\nsomething new, it blasts it with a jolt\nof electricity.\fIf you come across a blackened berry,\nit’s evidence that this POKéMON\nmistook the intensity of its charge."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "sapphire"
-              },
-              "flavor_text": "This POKéMON has electricity-storing\npouches on its cheeks. These appear to\nbecome electrically charged during the\fnight while PIKACHU sleeps.\nIt occasionally discharges electricity\nwhen it is dozy after waking up."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "emerald"
-              },
-              "flavor_text": "It stores electricity in the electric sacs\non its cheeks. When it releases pent-up\nenergy in a burst, the electric power is\nequal to a lightning bolt."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "firered"
-              },
-              "flavor_text": "It has small electric sacs on both its\ncheeks. If threatened, it looses electric\ncharges from the sacs."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "leafgreen"
-              },
-              "flavor_text": "When several of these POKéMON gather,\ntheir electricity can build and cause\nlightning storms."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "diamond"
-              },
-              "flavor_text": "It lives in forests with others.\nIt stores electricity in the\npouches on its cheeks."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "pearl"
-              },
-              "flavor_text": "If it looses crackling power from\nthe electric pouches on its\ncheeks, it is being wary."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "platinum"
-              },
-              "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow PIKACHU\nthat is in a weakened state."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "heartgold"
-              },
-              "flavor_text": "This intelligent Pokémon roasts\nhard berries with electricity to\nmake them tender enough to eat."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "soulsilver"
-              },
-              "flavor_text": "It raises its tail to check its\nsurroundings. The tail is sometimes\nstruck by lightning in this pose."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "black"
-              },
-              "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow Pikachu\nthat is in a weakened state."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "white"
-              },
-              "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow Pikachu\nthat is in a weakened state."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "black-2"
-              },
-              "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow Pikachu\nthat is in a weakened state."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "white-2"
-              },
-              "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow Pikachu\nthat is in a weakened state."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "x"
-              },
-              "flavor_text": "It raises its tail to check its surroundings.\nThe tail is sometimes struck by lightning\nin this pose."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "y"
-              },
-              "flavor_text": "It has small electric sacs on both its cheeks.\nIf threatened, it looses electric charges from\nthe sacs."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "omega-ruby"
-              },
-              "flavor_text": "Whenever Pikachu comes across something new,\nit blasts it with a jolt of electricity. If you come across a\nblackened berry, it’s evidence that this Pokémon mistook the\nintensity of its charge."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "alpha-sapphire"
-              },
-              "flavor_text": "This Pokémon has electricity-storing pouches on its cheeks.\nThese appear to become electrically charged during the night\nwhile Pikachu sleeps. It occasionally discharges electricity\nwhen it is dozy after waking up."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "sun"
-              },
-              "flavor_text": "A plan was recently announced to gather\nmany Pikachu and make an electric power plant."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "moon"
-              },
-              "flavor_text": "It’s in its nature to store electricity. It feels\nstressed now and then if it’s unable to fully\ndischarge the electricity."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "ultra-sun"
-              },
-              "flavor_text": "Its nature is to store up electricity. Forests\nwhere nests of Pikachu live are dangerous,\nsince the trees are so often struck by lightning."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "ultra-moon"
-              },
-              "flavor_text": "While sleeping, it generates electricity in the\nsacs in its cheeks. If it’s not getting enough\nsleep, it will be able to use only weak electricity."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "lets-go-pikachu"
-              },
-              "flavor_text": "This forest-dwelling Pokémon stores electricity\nin its cheeks, so you’ll feel a tingly shock\nif you touch it."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "lets-go-eevee"
-              },
-              "flavor_text": "This forest-dwelling Pokémon stores electricity\nin its cheeks, so you’ll feel a tingly shock\nif you touch it."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "sword"
-              },
-              "flavor_text": "Pikachu that can generate powerful electricity\nhave cheek sacs that are extra soft and\nsuper stretchy."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "shield"
-              },
-              "flavor_text": "When Pikachu meet, they’ll touch their tails\ntogether and exchange electricity through them\nas a form of greeting."
-            },
-            {
-              "pokemon_v2_version": {
-                "name": "legends-arceus"
-              },
-              "flavor_text": "Possesses cheek sacs in which it stores electricity. This clever\nforest-dweller roasts tough berries with an electric shock before\nconsuming them."
-            }
-          ],
-          "pokemon_v2_pokemonshape": {
-            "name": "quadruped"
-          },
-          "pokemon_v2_pokemonhabitat": {
-            "name": "forest"
-          },
-          "pokemon_v2_pokemonegggroups": [
-            {
-              "pokemon_v2_egggroup": {
-                "name": "ground"
-              }
-            },
-            {
-              "pokemon_v2_egggroup": {
-                "name": "fairy"
-              }
-            }
-          ],
-          "pokemon_v2_generation": {
-            "name": "generation-i"
-          },
-          "pokemon_v2_growthrate": {
-            "name": "medium"
-          },
-          "pokemon_v2_pokemoncolor": {
-            "name": "yellow"
-          },
-          "pokemon_v2_pokemonevolutions": [
-            {
-              "pokemon_v2_evolutiontrigger": {
-                "name": "level-up"
-              }
-            }
-          ]
+        "pokemon_v2_version": {
+          "name": "red"
         },
-        "pokemon_v2_pokemonmoves": [
-          {
-            "pokemon_v2_move": {
-              "name": "mega-punch",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "pay-day",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "thunder-punch",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "slam",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "double-kick",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "mega-kick",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "headbutt",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "body-slam",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "take-down",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "double-edge",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "tail-whip",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "growl",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "surf",
-              "pokemon_v2_type": {
-                "name": "water"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "submission",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "counter",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "seismic-toss",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "strength",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "thunder-shock",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "thunderbolt",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "thunder-wave",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "thunder",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "dig",
-              "pokemon_v2_type": {
-                "name": "ground"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "toxic",
-              "pokemon_v2_type": {
-                "name": "poison"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "agility",
-              "pokemon_v2_type": {
-                "name": "psychic"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "quick-attack",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "rage",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "mimic",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "double-team",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "defense-curl",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "light-screen",
-              "pokemon_v2_type": {
-                "name": "psychic"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "reflect",
-              "pokemon_v2_type": {
-                "name": "psychic"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "bide",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "swift",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "skull-bash",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "flash",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "rest",
-              "pokemon_v2_type": {
-                "name": "psychic"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "substitute",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "thief",
-              "pokemon_v2_type": {
-                "name": "dark"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "snore",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "curse",
-              "pokemon_v2_type": {
-                "name": "ghost"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "reversal",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "protect",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "sweet-kiss",
-              "pokemon_v2_type": {
-                "name": "fairy"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "mud-slap",
-              "pokemon_v2_type": {
-                "name": "ground"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "zap-cannon",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "detect",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "endure",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "charm",
-              "pokemon_v2_type": {
-                "name": "fairy"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "rollout",
-              "pokemon_v2_type": {
-                "name": "rock"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "swagger",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "spark",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "attract",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "sleep-talk",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "return",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "frustration",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "dynamic-punch",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "encore",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "iron-tail",
-              "pokemon_v2_type": {
-                "name": "steel"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "hidden-power",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "rain-dance",
-              "pokemon_v2_type": {
-                "name": "water"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "rock-smash",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "uproar",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "facade",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "focus-punch",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "helping-hand",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "brick-break",
-              "pokemon_v2_type": {
-                "name": "fighting"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "knock-off",
-              "pokemon_v2_type": {
-                "name": "dark"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "secret-power",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "signal-beam",
-              "pokemon_v2_type": {
-                "name": "bug"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "covet",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "volt-tackle",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "calm-mind",
-              "pokemon_v2_type": {
-                "name": "psychic"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "shock-wave",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "natural-gift",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "feint",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "fling",
-              "pokemon_v2_type": {
-                "name": "dark"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "magnet-rise",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "nasty-plot",
-              "pokemon_v2_type": {
-                "name": "dark"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "discharge",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "captivate",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "grass-knot",
-              "pokemon_v2_type": {
-                "name": "grass"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "charge-beam",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "electro-ball",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "round",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "echoed-voice",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "volt-switch",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "electroweb",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "wild-charge",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "draining-kiss",
-              "pokemon_v2_type": {
-                "name": "fairy"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "play-rough",
-              "pokemon_v2_type": {
-                "name": "fairy"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "play-nice",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "confide",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "electric-terrain",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "machine"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "nuzzle",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "level-up"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "laser-focus",
-              "pokemon_v2_type": {
-                "name": "normal"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          },
-          {
-            "pokemon_v2_move": {
-              "name": "rising-voltage",
-              "pokemon_v2_type": {
-                "name": "electric"
-              }
-            },
-            "pokemon_v2_movelearnmethod": {
-              "name": "tutor"
-            }
-          }
-        ]
+        "flavor_text": "When several of\nthese POK\u00e9MON\ngather, their\felectricity could\nbuild and cause\nlightning storms."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "blue"
+        },
+        "flavor_text": "When several of\nthese POK\u00e9MON\ngather, their\felectricity could\nbuild and cause\nlightning storms."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "yellow"
+        },
+        "flavor_text": "It keeps its tail\nraised to monitor\nits surroundings.\fIf you yank its\ntail, it will try\nto bite you."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "gold"
+        },
+        "flavor_text": "This intelligent\nPOK\u00e9MON roasts\nhard BERRIES with\felectricity to\nmake them tender\nenough to eat."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "silver"
+        },
+        "flavor_text": "It raises its tail\nto check its sur\u00ad\nroundings. The\ftail is sometimes\nstruck by light\u00ad\nning in this pose."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "crystal"
+        },
+        "flavor_text": "When it is anger\u00ad\ned, it immediately\ndischarges the\fenergy stored in\nthe pouches in its\ncheeks."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "ruby"
+        },
+        "flavor_text": "Whenever PIKACHU comes across\nsomething new, it blasts it with a jolt\nof electricity.\fIf you come across a blackened berry,\nit\u2019s evidence that this POK\u00e9MON\nmistook the intensity of its charge."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "sapphire"
+        },
+        "flavor_text": "This POK\u00e9MON has electricity-storing\npouches on its cheeks. These appear to\nbecome electrically charged during the\fnight while PIKACHU sleeps.\nIt occasionally discharges electricity\nwhen it is dozy after waking up."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "emerald"
+        },
+        "flavor_text": "It stores electricity in the electric sacs\non its cheeks. When it releases pent-up\nenergy in a burst, the electric power is\nequal to a lightning bolt."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "firered"
+        },
+        "flavor_text": "It has small electric sacs on both its\ncheeks. If threatened, it looses electric\ncharges from the sacs."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "leafgreen"
+        },
+        "flavor_text": "When several of these POK\u00e9MON gather,\ntheir electricity can build and cause\nlightning storms."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "diamond"
+        },
+        "flavor_text": "It lives in forests with others.\nIt stores electricity in the\npouches on its cheeks."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "pearl"
+        },
+        "flavor_text": "If it looses crackling power from\nthe electric pouches on its\ncheeks, it is being wary."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "platinum"
+        },
+        "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow PIKACHU\nthat is in a weakened state."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "heartgold"
+        },
+        "flavor_text": "This intelligent Pok\u00e9mon roasts\nhard berries with electricity to\nmake them tender enough to eat."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "soulsilver"
+        },
+        "flavor_text": "It raises its tail to check its\nsurroundings. The tail is sometimes\nstruck by lightning in this pose."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "black"
+        },
+        "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow Pikachu\nthat is in a weakened state."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "white"
+        },
+        "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow Pikachu\nthat is in a weakened state."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "black-2"
+        },
+        "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow Pikachu\nthat is in a weakened state."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "white-2"
+        },
+        "flavor_text": "It occasionally uses an electric\nshock to recharge a fellow Pikachu\nthat is in a weakened state."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "x"
+        },
+        "flavor_text": "It raises its tail to check its surroundings.\nThe tail is sometimes struck by lightning\nin this pose."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "y"
+        },
+        "flavor_text": "It has small electric sacs on both its cheeks.\nIf threatened, it looses electric charges from\nthe sacs."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "omega-ruby"
+        },
+        "flavor_text": "Whenever Pikachu comes across something new,\nit blasts it with a jolt of electricity. If you come across a\nblackened berry, it\u2019s evidence that this Pok\u00e9mon mistook the\nintensity of its charge."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "alpha-sapphire"
+        },
+        "flavor_text": "This Pok\u00e9mon has electricity-storing pouches on its cheeks.\nThese appear to become electrically charged during the night\nwhile Pikachu sleeps. It occasionally discharges electricity\nwhen it is dozy after waking up."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "sun"
+        },
+        "flavor_text": "A plan was recently announced to gather\nmany Pikachu and make an electric power plant."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "moon"
+        },
+        "flavor_text": "It\u2019s in its nature to store electricity. It feels\nstressed now and then if it\u2019s unable to fully\ndischarge the electricity."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "ultra-sun"
+        },
+        "flavor_text": "Its nature is to store up electricity. Forests\nwhere nests of Pikachu live are dangerous,\nsince the trees are so often struck by lightning."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "ultra-moon"
+        },
+        "flavor_text": "While sleeping, it generates electricity in the\nsacs in its cheeks. If it\u2019s not getting enough\nsleep, it will be able to use only weak electricity."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "lets-go-pikachu"
+        },
+        "flavor_text": "This forest-dwelling Pok\u00e9mon stores electricity\nin its cheeks, so you\u2019ll feel a tingly shock\nif you touch it."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "lets-go-eevee"
+        },
+        "flavor_text": "This forest-dwelling Pok\u00e9mon stores electricity\nin its cheeks, so you\u2019ll feel a tingly shock\nif you touch it."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "sword"
+        },
+        "flavor_text": "Pikachu that can generate powerful electricity\nhave cheek sacs that are extra soft and\nsuper stretchy."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "shield"
+        },
+        "flavor_text": "When Pikachu meet, they\u2019ll touch their tails\ntogether and exchange electricity through them\nas a form of greeting."
+      },
+      {
+        "pokemon_v2_version": {
+          "name": "legends-arceus"
+        },
+        "flavor_text": "Possesses cheek sacs in which it stores electricity. This clever\nforest-dweller roasts tough berries with an electric shock before\nconsuming them."
+      }
+    ],
+    "pokemon_v2_pokemonshape": {
+      "name": "quadruped"
+    },
+    "pokemon_v2_pokemonhabitat": {
+      "name": "forest"
+    },
+    "pokemon_v2_pokemonegggroups": [
+      {
+        "pokemon_v2_egggroup": {
+          "name": "ground"
+        }
+      },
+      {
+        "pokemon_v2_egggroup": {
+          "name": "fairy"
+        }
+      }
+    ],
+    "pokemon_v2_generation": {
+      "name": "generation-i"
+    },
+    "pokemon_v2_growthrate": {
+      "name": "medium"
+    },
+    "pokemon_v2_pokemoncolor": {
+      "name": "yellow"
+    },
+    "pokemon_v2_pokemonevolutions": [
+      {
+        "pokemon_v2_evolutiontrigger": {
+          "name": "level-up"
+        }
       }
     ]
-  }
+  },
+  "pokemon_v2_pokemonmoves": [
+    {
+      "pokemon_v2_move": {
+        "name": "mega-punch",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "pay-day",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "thunder-punch",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "slam",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "double-kick",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "mega-kick",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "headbutt",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "body-slam",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "take-down",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "double-edge",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "tail-whip",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "growl",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "surf",
+        "pokemon_v2_type": {
+          "name": "water"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "submission",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "counter",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "seismic-toss",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "strength",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "thunder-shock",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "thunderbolt",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "thunder-wave",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "thunder",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "dig",
+        "pokemon_v2_type": {
+          "name": "ground"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "toxic",
+        "pokemon_v2_type": {
+          "name": "poison"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "agility",
+        "pokemon_v2_type": {
+          "name": "psychic"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "quick-attack",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "rage",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "mimic",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "double-team",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "defense-curl",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "light-screen",
+        "pokemon_v2_type": {
+          "name": "psychic"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "reflect",
+        "pokemon_v2_type": {
+          "name": "psychic"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "bide",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "swift",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "skull-bash",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "flash",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "rest",
+        "pokemon_v2_type": {
+          "name": "psychic"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "substitute",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "thief",
+        "pokemon_v2_type": {
+          "name": "dark"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "snore",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "curse",
+        "pokemon_v2_type": {
+          "name": "ghost"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "reversal",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "protect",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "sweet-kiss",
+        "pokemon_v2_type": {
+          "name": "fairy"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "mud-slap",
+        "pokemon_v2_type": {
+          "name": "ground"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "zap-cannon",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "detect",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "endure",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "charm",
+        "pokemon_v2_type": {
+          "name": "fairy"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "rollout",
+        "pokemon_v2_type": {
+          "name": "rock"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "swagger",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "spark",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "attract",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "sleep-talk",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "return",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "frustration",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "dynamic-punch",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "encore",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "iron-tail",
+        "pokemon_v2_type": {
+          "name": "steel"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "hidden-power",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "rain-dance",
+        "pokemon_v2_type": {
+          "name": "water"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "rock-smash",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "uproar",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "facade",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "focus-punch",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "charge",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "helping-hand",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "brick-break",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "knock-off",
+        "pokemon_v2_type": {
+          "name": "dark"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "endeavor",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "secret-power",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "fake-tears",
+        "pokemon_v2_type": {
+          "name": "dark"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "signal-beam",
+        "pokemon_v2_type": {
+          "name": "bug"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "covet",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "volt-tackle",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "calm-mind",
+        "pokemon_v2_type": {
+          "name": "psychic"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "shock-wave",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "natural-gift",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "feint",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "fling",
+        "pokemon_v2_type": {
+          "name": "dark"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "magnet-rise",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "nasty-plot",
+        "pokemon_v2_type": {
+          "name": "dark"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "discharge",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "captivate",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "grass-knot",
+        "pokemon_v2_type": {
+          "name": "grass"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "charge-beam",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "electro-ball",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "round",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "echoed-voice",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "volt-switch",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "electroweb",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "wild-charge",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "disarming-voice",
+        "pokemon_v2_type": {
+          "name": "fairy"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "draining-kiss",
+        "pokemon_v2_type": {
+          "name": "fairy"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "play-rough",
+        "pokemon_v2_type": {
+          "name": "fairy"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "play-nice",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "confide",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "eerie-impulse",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "electric-terrain",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "nuzzle",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "laser-focus",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "rising-voltage",
+        "pokemon_v2_type": {
+          "name": "electric"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "tera-blast",
+        "pokemon_v2_type": {
+          "name": "normal"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "trailblaze",
+        "pokemon_v2_type": {
+          "name": "grass"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "alluring-voice",
+        "pokemon_v2_type": {
+          "name": "fairy"
+        }
+      }
+    },
+    {
+      "pokemon_v2_move": {
+        "name": "upper-hand",
+        "pokemon_v2_type": {
+          "name": "fighting"
+        }
+      }
+    }
+  ]
 }
