@@ -561,11 +561,11 @@ df_counts %>% head()
 ```{r}
 plot <- ggplot(df_counts, aes(x = counts)) +
   geom_histogram(binwidth = 100, fill = "#23252F") +
-  scale_x_continuous(limits = c(2^9, 2^13), breaks = 2^(9:13), minor_breaks = NULL) +
+  scale_x_continuous(limits = c(2^9, 2^13 + 100), breaks = 2^(9:13), minor_breaks = NULL) +
   scale_fill_hue(guide = "none") +
   labs(
     title = "Distribution of Token Lengths of Pokémon Raw JSON Metadata",
-    subtitle = "Using the bert-base-uncased tokenizer.",
+    subtitle = "Using the bert-base-uncased tokenizer. Tokens calculated post-minification.",
     x = "Encoded Token Count", y = "# of Pokémon",
     caption = caption
   )
