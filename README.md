@@ -1,6 +1,8 @@
 # pokemon-embeddings
 
-Jupyter Notebooks and an R Notebook for encoding Pokémon embeddings and creating data visualizations.
+Jupyter Notebooks and an R Notebook for encoding Pokémon embeddings and creating data visualizations. This repo is a complement for [The Super Effectiveness of Pokémon Embeddings Using Only Raw JSON and Images](https://minimaxir.com/2024/06/pokemon-embeddings/).
+
+Note that the R Notebook requires that the `arrow` package be installed with GZIP loading support.
 
 ## Maintainer/Creator
 
